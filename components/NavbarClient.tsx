@@ -36,6 +36,14 @@ export default function NavbarClient() {
                 >
                   Filmler
                 </Link>
+                <Link
+                  href="/diziler"
+                  className={`text-sm font-medium transition-colors ${
+                    pathname === '/diziler' ? 'text-white' : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  Diziler
+                </Link>
               </div>
             </div>
 
