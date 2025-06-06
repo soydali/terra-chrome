@@ -55,9 +55,6 @@ After modifying the `.npmrc` file, you need to run `pnpm install` again to ensur
 
 This project is continuously evolving. Here's a list of planned features and improvements:
 
-  * **User Authentication**: Implement robust user login and registration.
-  * **Admin Panel**: Create an administrative interface for managing movies, users, and server settings.
-  * **Movie Upload & Management**: Develop features for easy uploading, editing, and deleting of movie files and metadata.
   * **Search & Filtering**: Add comprehensive search capabilities and filters to help users find movies.
   * **Playback Features**: Enhance the video player with features like subtitles, multiple audio tracks, and playback speed control.
   * **Customizable Themes**: Allow users to personalize the look and feel of their streaming platform.
