@@ -1,11 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Series from '@/models/Series';
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+// GET
+export async function GET(request: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
-    const { id } = await params;
+    const { id } = await context.params;
 
     const series = await Series.findById(id);
 
@@ -20,15 +21,12 @@ export async function GET(request: Request, { params }: { params: { id: string }
   }
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+// PUT
+export async function PUT(request: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
-    const { id } = params;
+    const { id } = await context.params;
     const body = await request.json();
-
-    if (!id) {
-      return NextResponse.json({ error: 'Dizi ID\'si eksik' }, { status: 400 });
-    }
 
     const updatedSeries = await Series.findByIdAndUpdate(id, body, { new: true });
 
@@ -43,14 +41,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+// DELETE
+export async function DELETE(request: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
-    const { id } = params;
-
-    if (!id) {
-      return NextResponse.json({ error: 'Dizi ID\'si eksik' }, { status: 400 });
-    }
+    const { id } = await context.params;
 
     const deletedSeries = await Series.findByIdAndDelete(id);
 
@@ -63,4 +58,4 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     console.error('Error deleting series:', error);
     return NextResponse.json({ error: 'Dizi silinirken bir hata oluştu' }, { status: 500 });
   }
-} 
+}

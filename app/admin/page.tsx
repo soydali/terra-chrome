@@ -50,6 +50,22 @@ interface SeasonUI {
   episodes: EpisodeUI[];
 }
 
+interface SeriesUI {
+  _id: string;
+  title: string;
+  year: string;
+  description: string;
+  image: string;
+  rating: number;
+  director: string;
+  cast: string[];
+  genre: string[];
+  numberOfSeasons: number;
+  seasons: SeasonUI[];
+  status: string;
+  addedDate: string;
+}
+
 export default function AdminPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -57,7 +73,7 @@ export default function AdminPage() {
   const [isAddSeriesModalOpen, setIsAddSeriesModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [isEditSeriesModalOpen, setIsEditSeriesModalOpen] = useState(false);
-  const [selectedSeries, setSelectedSeries] = useState<(Series & { seasons?: SeasonUI[] }) | null>(null);
+  const [selectedSeries, setSelectedSeries] = useState<SeriesUI | null>(null);
   const [newMovie, setNewMovie] = useState<Partial<Movie>>({
     title: '',
     year: '',
@@ -139,7 +155,10 @@ export default function AdminPage() {
   const handleEditSeriesClick = (series: Series) => {
     // When editing, convert the flat episodes array back to nested seasons for the UI
     const seasonsMap = new Map<number, EpisodeUI[]>();
-    series.episodes.forEach(episode => {
+    // Destructure to exclude `episodes` and `numberOfSeasons` which will be replaced by `seasons` from SeriesUI
+    const { episodes, numberOfSeasons: originalNumSeasons, ...restOfSeries } = series;
+
+    episodes.forEach(episode => {
       // Assuming episode titles might contain a pattern like "Sezon X Bölüm Y: Title"
       // This is a rough attempt to parse season number from title if not explicitly stored
       const match = episode.title.match(/Sezon (\d+):/);
@@ -161,14 +180,15 @@ export default function AdminPage() {
         }))
       }));
 
-    setSelectedSeries({
-      ...series,
+    const seriesForUI: SeriesUI = {
+      ...restOfSeries,
       seasons: sortedSeasons.length > 0 ? sortedSeasons : [{
         seasonNumber: 1,
         episodes: []
       }],
-      numberOfSeasons: sortedSeasons.length > 0 ? sortedSeasons.length : 1
-    });
+      numberOfSeasons: sortedSeasons.length > 0 ? sortedSeasons.length : 1,
+    };
+    setSelectedSeries(seriesForUI);
     setIsEditSeriesModalOpen(true);
   };
 
@@ -1026,7 +1046,7 @@ export default function AdminPage() {
                               if (updatedSeasons[seasonIndex]) {
                                 updatedSeasons[seasonIndex].episodes.push({ title: '', videoUrl: '' });
                               }
-                              return {...prev, seasons: updatedSeasons};
+                              return { ...prev, seasons: updatedSeasons };
                             });
                           }}
                           className="w-full mt-3 border-2 border-white/20 text-white hover:bg-white/10 transition-colors"
@@ -1323,7 +1343,7 @@ export default function AdminPage() {
                               if (updatedSeasons[seasonIndex]) {
                                 updatedSeasons[seasonIndex].episodes.push({ title: '', videoUrl: '' });
                               }
-                              return {...prev, seasons: updatedSeasons};
+                              return { ...prev, seasons: updatedSeasons };
                             });
                           }}
                           className="w-full mt-3 border-2 border-white/20 text-white hover:bg-white/10 transition-colors"
