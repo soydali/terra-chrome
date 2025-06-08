@@ -1,4 +1,4 @@
-# Terra Chrome
+![image](https://github.com/user-attachments/assets/0ff84b53-748a-461d-88f0-d4ae666b411c)![image](https://github.com/user-attachments/assets/ddbd2b3a-b2a2-4b11-acba-305fc16d9bf4)# Terra Chrome
 
 Terra Chrome is a web application that allows you to host and stream movies on your **personal servers**. It's designed to be a self-hosted movie streaming platform, giving you full control over your content.
 
@@ -60,6 +60,13 @@ This project is continuously evolving. Here's a list of planned features and imp
   * **Customizable Themes**: Allow users to personalize the look and feel of their streaming platform.
   * **Responsive Design**: Ensure optimal viewing experience across all devices (desktop, tablet, mobile).
   * **Performance Optimization**: Continuously improve loading times and overall application performance.
+
+-----
+#Screenshots
+![](https://img001.prntscr.com/file/img001/73ZzIR0tQ0GxpQJEjTZuCQ.png)
+![](https://img001.prntscr.com/file/img001/rn54EWw9QueoIVEzt2d3rA.png)
+![](https://img001.prntscr.com/file/img001/pFQ-v3XGTayqRqkbGTVvUg.png)
+
 
 -----
 
