@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/0ff84b53-748a-461d-88f0-d4ae666b411c)![image](https://github.com/user-attachments/assets/ddbd2b3a-b2a2-4b11-acba-305fc16d9bf4)# Terra Chrome
-
 Terra Chrome is a web application that allows you to host and stream movies on your **personal servers**. It's designed to be a self-hosted movie streaming platform, giving you full control over your content.
 
 -----
