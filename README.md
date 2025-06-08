@@ -60,7 +60,7 @@ This project is continuously evolving. Here's a list of planned features and imp
   * **Performance Optimization**: Continuously improve loading times and overall application performance.
 
 -----
-#Screenshots
+# Screenshots
 ![](https://img001.prntscr.com/file/img001/73ZzIR0tQ0GxpQJEjTZuCQ.png)
 ![](https://img001.prntscr.com/file/img001/rn54EWw9QueoIVEzt2d3rA.png)
 ![](https://img001.prntscr.com/file/img001/pFQ-v3XGTayqRqkbGTVvUg.png)
